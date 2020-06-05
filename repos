@@ -1,0 +1,17 @@
+# This file names the active git clones to avoid repetition in the scripts.
+# Non-existent directories are silently ignored.
+  git-cache
+  jdk08
+  jdk09
+  jdk10
+  jdk11
+  jdk12
+  jdk13
+  jdk14
+  jdk15
+  jdk16
+  jdk17
+  omr
+  openj9
+  openj9-tools
+  openj9/test/TKG
