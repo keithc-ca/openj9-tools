@@ -23,7 +23,11 @@ fi
 declare -a images=( $jdk/build/*/images )
 
 if [ ${#images[*]} != 1 -o ! -d "$images" ] ; then
-  fatal "Can't locate unique images directory"
+  # Try the current directory.
+  images=$here/images
+  if [ ! -d $images ] ; then
+	fatal "Can't locate unique images directory"
+  fi
 fi
 
 if [ $version = 8 ] ; then
