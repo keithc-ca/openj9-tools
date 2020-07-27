@@ -6,18 +6,17 @@ fatal() {
 }
 
 arch="$(uname -p)"
-libnuma=
+libnuma=libnuma-dev
 nasm=
 
 case "$arch" in
 	amd64|x86_64)
-		libnuma=libnuma-dev
 		nasm=nasm
 		;;
 	ppc64el|ppc64le)
-		libnuma=libnuma-dev
 		;;
 	s390x)
+		libnuma=
 		;;
 	*)
 		fatal "Unsupported machine architecture: $arch"
@@ -67,6 +66,7 @@ apt-get install -qq -y --no-install-recommends \
 	$nasm \
 	pkg-config \
 	ssh \
+	systemtap-sdt-dev \
 	unzip \
 	vim \
 	wget \
