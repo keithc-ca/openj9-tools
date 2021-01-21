@@ -45,9 +45,9 @@ for version in 8 11 15 ; do
 		wget -q -O $jdk_name.tar.gz \
 			https://api.adoptopenjdk.net/v3/binary/latest/$version/ga/linux/$platform/jdk/openj9/normal/adoptopenjdk
 		mkdir $jdk_name
-		# AdoptOpenJDK produces tar files where the contained paths begin with './{jdk-root}/'
-		# so we need to strip 2 leading segments to get the desired structure.
-		tar -C $jdk_name --strip-components=2 -xzf $jdk_name.tar.gz
+		# AdoptOpenJDK produces tar files where the contained paths begin with '{jdk-root}/'
+		# so we need to strip a leading segment to get the desired structure.
+		tar -C $jdk_name --strip-components=1 -xzf $jdk_name.tar.gz
 		rm $jdk_name.tar.gz
 	fi
 done
