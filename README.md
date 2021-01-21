@@ -95,7 +95,7 @@ Now that your system has git and your SSH key is installed, clone this
 repository for local use.
 
 ```sh
-$ git clone https://github.com/keithc/openj9-tools.git tools
+$ git clone https://github.com/keithc-ca/openj9-tools.git tools
 ```
 
 Create symbolic links to the scripts and the file containing the list
