@@ -34,7 +34,7 @@ else
 fi
 
 # Install some boot JDKs.
-for version in 8 11 14 ; do
+for version in 8 11 15 ; do
 	jdk_name=bootjdk$version
 	if [ -d $jdk_name ]; then
 		echo "$jdk_name exists: skipping."

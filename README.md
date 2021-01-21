@@ -116,8 +116,8 @@ Now clone the OpenJDK extension repositories (omit any you don't immediately nee
 ```sh
 $ git clone https://github.com/ibmruntimes/openj9-openjdk-jdk8.git jdk08
 $ git clone https://github.com/ibmruntimes/openj9-openjdk-jdk11.git jdk11
-$ git clone https://github.com/ibmruntimes/openj9-openjdk-jdk14.git jdk14
-$ git clone https://github.com/ibmruntimes/openj9-openjdk-jdk.git jdk15
+$ git clone https://github.com/ibmruntimes/openj9-openjdk-jdk16.git jdk16
+$ git clone https://github.com/ibmruntimes/openj9-openjdk-jdk.git jdk17
 ```
 
 You could follow the instructions included in the OpenJ9 repository to
@@ -132,8 +132,8 @@ $ git clone https://github.com/eclipse/openj9-omr.git omr
 $ git clone https://github.com/eclipse/openj9.git openj9
 $ ln -s ../omr ../openj9 jdk08
 $ ln -s ../omr ../openj9 jdk11
-$ ln -s ../omr ../openj9 jdk14
-$ ln -s ../omr ../openj9 jdk15
+$ ln -s ../omr ../openj9 jdk16
+$ ln -s ../omr ../openj9 jdk17
 ```
 
 Ongoing Activity
