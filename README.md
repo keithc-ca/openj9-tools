@@ -128,8 +128,8 @@ that choice: clone OMR and OpenJ9 and create symbolic links to satisfy
 the extension repositories.
 
 ```sh
-$ git clone https://github.com/eclipse/openj9-omr.git omr
-$ git clone https://github.com/eclipse/openj9.git openj9
+$ git clone https://github.com/eclipse-openj9/openj9-omr.git omr
+$ git clone https://github.com/eclipse-openj9/openj9.git openj9
 $ ln -s ../omr ../openj9 jdk08
 $ ln -s ../omr ../openj9 jdk11
 $ ln -s ../omr ../openj9 jdk16
