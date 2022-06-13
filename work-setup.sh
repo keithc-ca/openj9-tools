@@ -43,9 +43,9 @@ for version in 8 11 17 18 ; do
 	else
 		echo "Fetching $jdk_name.tar.gz ..."
 		wget -q -O $jdk_name.tar.gz \
-			https://api.adoptopenjdk.net/v3/binary/latest/$version/ga/linux/$platform/jdk/openj9/normal/adoptopenjdk
+			https://ibm.com/semeru-runtimes/api/v3/binary/latest/$version/ga/linux/$platform/jdk/openj9/normal/ibm
 		mkdir $jdk_name
-		# AdoptOpenJDK produces tar files where the contained paths begin with '{jdk-root}/'
+		# Semeru archives contain paths that begin with '{jdk-root}/',
 		# so we need to strip a leading segment to get the desired structure.
 		tar -C $jdk_name --strip-components=1 -xzf $jdk_name.tar.gz
 		rm $jdk_name.tar.gz
