@@ -9,12 +9,15 @@ do_config() {
 	tooldir=$(dirname $PWD)
 	thisdir=$(basename $PWD)
 
-	# This script is expected to be run from the root working directory of
-	# an extensions repository; we expect the name to end with the version.
-
-	if [[ "$thisdir" =~ ^.*jdk0*([1-9][0-9]*)$ ]]; then
-		repo="${BASH_REMATCH[1]}"
+	# This script is expected to be run from the root working directory of an
+	# extensions repository; we use openjdk-tag.gmk to identify the version.
+	tag_file=closed/openjdk-tag.gmk
+	if [ -f $tag_file ] ; then
+		repo=$(sed -E -n -e 's/^.*jdk-?([0-9]+).*$/\1/p' < $tag_file)
 	else
+		repo=
+	fi
+	if [ -z "$repo" ] ; then
 		fatal "Don't know which Java version to configure."
 	fi
 

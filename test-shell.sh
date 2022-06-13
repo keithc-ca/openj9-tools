@@ -7,18 +7,21 @@ fatal() {
 
 here=$(pwd -P)
 
-if [[ $here =~ ^(.*/jdk[0-9]+)(/|$) ]] ; then
-  jdk=${BASH_REMATCH[1]}
-  openj9=$jdk/openj9
-else
-  fatal "Can't decipher JDK root from path '$here'"
-fi
-
-if [[ $jdk =~ ^.*/jdk0*([1-9][0-9]*)$ ]] ; then
-  version=${BASH_REMATCH[1]}
-else
-  fatal "Can't decipher JDK version from name '$jdk'"
-fi
+# look for an ancestor directory containing closed/openjdk-tag.gmk
+tag_file=closed/openjdk-tag.gmk
+jdk=$here
+while true ; do
+  if [ -f $jdk/$tag_file ] ; then
+    version=$(sed -E -n -e 's/^.*jdk-?([0-9]+).*$/\1/p' < $jdk/$tag_file)
+    if [ -n "$version" ] ; then
+      break
+    fi
+    fatal "Can't decipher JDK version from name '$jdk/$tag_file'"
+  elif [ $jdk = / ] ; then
+    fatal "Can't decipher JDK root from path '$here'"
+  fi
+  jdk=$(dirname $jdk)
+done
 
 declare -a images=( $jdk/build/*/images )
 
@@ -40,7 +43,7 @@ export JDK_VERSION=$version
 export LD_LIBRARY_PATH=$images/test/openj9
 export NATIVE_TEST_LIBS=$images/test/openj9
 
-cd $openj9/test/TKG
+cd $jdk/openj9/test/TKG
 
 echo "To download required test material & libraries and then compile:"
 echo "  make compile"
