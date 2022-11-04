@@ -2,17 +2,10 @@
 # Non-existent directories are silently ignored.
   git-cache
   jdk08
-  jdk09
-  jdk10
   jdk11
-  jdk12
-  jdk13
-  jdk14
-  jdk15
-  jdk16
   jdk17
-  jdk18
   jdk19
+  jdknext
   omr
   openj9
   openj9-tools
