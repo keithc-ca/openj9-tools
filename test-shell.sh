@@ -40,7 +40,6 @@ else
 fi
 
 export JDK_VERSION=$version
-export LD_LIBRARY_PATH=$images/test/openj9
 export NATIVE_TEST_LIBS=$images/test/openj9
 
 cd $jdk/openj9/test/TKG
