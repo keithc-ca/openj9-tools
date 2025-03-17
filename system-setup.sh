@@ -5,7 +5,7 @@ fatal() {
 	exit 1
 }
 
-arch="$(uname -p)"
+arch="$(uname -m)"
 libnuma=libnuma-dev
 nasm=
 
