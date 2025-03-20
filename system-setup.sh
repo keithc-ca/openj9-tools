@@ -44,8 +44,7 @@ apt_setup() {
 		cmake \
 		cpio \
 		file \
-		g++-7 \
-		g++-8 \
+		g++ \
 		git \
 		git-core \
 		less \
