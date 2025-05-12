@@ -29,7 +29,7 @@ if [ ${#images[*]} != 1 -o ! -d "$images" ] ; then
   # Try the current directory.
   images=$here/images
   if [ ! -d $images ] ; then
-	fatal "Can't locate unique images directory"
+    fatal "Can't locate unique images directory"
   fi
 fi
 
