@@ -22,17 +22,6 @@ case "$arch" in
 		;;
 esac
 
-# Download and unpack freemarker.jar if needed.
-if [ -f freemarker.jar ] ; then
-	echo "freemarker.jar exists: skipping."
-else
-	echo "Fetching freemarker.jar ..."
-	wget -q -O freemarker.tar.gz \
-		https://sourceforge.net/projects/freemarker/files/freemarker/2.3.8/freemarker-2.3.8.tar.gz/download
-	tar -xzf freemarker.tar.gz freemarker-2.3.8/lib/freemarker.jar --strip-components=2
-	rm freemarker.tar.gz
-fi
-
 # Install some boot JDKs.
 for version in 8 11 17 21 ; do
 	jdk_name=bootjdk$version
