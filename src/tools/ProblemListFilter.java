@@ -9,6 +9,8 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -79,8 +81,11 @@ public class ProblemListFilter {
 
 	}
 
+	private static boolean keepDuplicates = false;
+
 	private static void filter(InputStream in, PrintStream out) throws IOException {
 		List<Problem> pending = new ArrayList<>();
+		Map<String, Boolean> duplicates = new TreeMap<>();
 
 		try (InputStreamReader reader = new InputStreamReader(in, StandardCharsets.UTF_8);
 				BufferedReader buffered = new BufferedReader(reader)) {
@@ -94,7 +99,12 @@ public class ProblemListFilter {
 				Problem problem = Problem.parse(line);
 
 				if (problem != null) {
-					pending.add(problem);
+					boolean isDuplicate = duplicates.compute(problem.test,
+							(key, value) -> Boolean.valueOf(value != null));
+
+					if (keepDuplicates || !isDuplicate) {
+						pending.add(problem);
+					}
 				} else {
 					print(pending, out);
 					pending.clear();
@@ -103,6 +113,7 @@ public class ProblemListFilter {
 			}
 		} finally {
 			print(pending, out);
+			showDuplicates(duplicates, out);
 		}
 	}
 
@@ -127,6 +138,19 @@ public class ProblemListFilter {
 
 	private static void print(List<Problem> pending, PrintStream out) {
 		pending.stream().sorted().forEachOrdered(out::println);
+	}
+
+	private static void showDuplicates(Map<String, Boolean> duplicates, PrintStream out) {
+		boolean first = true;
+		for (Map.Entry<String, Boolean> entry : duplicates.entrySet()) {
+			if (entry.getValue().booleanValue()) {
+				if (first) {
+					out.format("Duplicate tests:%n", keepDuplicates ? "" : " removed");
+					first = false;
+				}
+				out.format("  %s%n", entry.getKey());
+			}
+		}
 	}
 
 }
